@@ -2,14 +2,16 @@
 using Binance.API.Csharp.Client.Models.Enums;
 using System.Threading;
 using Binance.API.Csharp.Client.Models.WebSocket;
+using static System.Console; 
 
 namespace Binance.API.Csharp.Client.Test
 {
     [TestClass]
     public class BinanceTest
     {
-        private static ApiClient apiClient = new ApiClient("@YourApiKey", "@YourApiSecret");
-        private static BinanceClient binanceClient = new BinanceClient(apiClient,false);
+        //private static ApiClient apiClient = new ApiClient("@YourApiKey", "@YourApiSecret");
+        private static ApiClient apiClient = new ApiClient(APIKey.Key, APIKey.Secret);
+        private static BinanceClient binanceClient = new BinanceClient(apiClient, false);
 
         #region General
         [TestMethod]
@@ -22,6 +24,7 @@ namespace Binance.API.Csharp.Client.Test
         public void GetServerTime()
         {
             var serverTime = binanceClient.GetServerTime().Result;
+            WriteLine($"Server time is {serverTime.ServerTime}");
         }
         #endregion
 
@@ -47,7 +50,12 @@ namespace Binance.API.Csharp.Client.Test
         [TestMethod]
         public void GetPriceChange24H()
         {
-            var priceChangeInfo = binanceClient.GetPriceChange24H().Result;
+            var priceChangeInfos = binanceClient.GetPriceChange24H().Result;
+            foreach(var priceChangeInfo in priceChangeInfos)
+            {
+                WriteLine($"Symbol: {priceChangeInfo.Symbol}, Price Change Percent: {priceChangeInfo.PriceChange}, " +
+                    $"Price Change: {priceChangeInfo.PriceChange}");
+            }
         }
 
         [TestMethod]
