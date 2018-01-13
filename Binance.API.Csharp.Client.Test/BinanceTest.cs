@@ -24,7 +24,7 @@ namespace Binance.API.Csharp.Client.Test
         public void GetServerTime()
         {
             var serverTime = binanceClient.GetServerTime().Result;
-            WriteLine($"Server time is {serverTime.ServerTime}");
+            WriteLine($"Server time is {serverTime.ServerTime}, Local Time:{serverTime.LocalTime}, UTC Time:{serverTime.UTCTime}");
         }
         #endregion
 
