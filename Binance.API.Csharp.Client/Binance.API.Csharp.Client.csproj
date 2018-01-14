@@ -73,4 +73,7 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy $(ProjectDir)\$(OutDir)\Binance*.* $(SolutionDir)\..\common\lib</PostBuildEvent>
+  </PropertyGroup>
 </Project>

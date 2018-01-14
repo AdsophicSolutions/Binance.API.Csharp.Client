@@ -215,7 +215,7 @@ namespace Binance.API.Csharp.Client.Domain.Interfaces
         /// </summary>
         /// <param name="symbol">Ticker symbol.</param>
         /// <param name="depthHandler">Handler to be used when a message is received.</param>
-        void ListenDepthEndpoint(string symbol, MessageHandler<DepthMessage> messageHandler);
+        void ListenDepthEndpoint(string symbol, Action<DepthMessage> messageHandler);
 
         /// <summary>
         /// Listen to the Kline endpoint.
@@ -223,14 +223,14 @@ namespace Binance.API.Csharp.Client.Domain.Interfaces
         /// <param name="symbol">Ticker symbol.</param>
         /// <param name="interval">Time interval to retreive.</param>
         /// <param name="klineHandler">Handler to be used when a message is received.</param>
-        void ListenKlineEndpoint(string symbol, TimeInterval interval, MessageHandler<KlineMessage> messageHandler);
+        void ListenKlineEndpoint(string symbol, TimeInterval interval, Action<KlineMessage> messageHandler);
 
         /// <summary>
         /// Listen to the Trades endpoint.
         /// </summary>
         /// <param name="symbol">Ticker symbol.</param>
         /// <param name="tradeHandler">Handler to be used when a message is received.</param>
-        void ListenTradeEndpoint(string symbol, MessageHandler<AggregateTradeMessage> messageHandler);
+        void ListenTradeEndpoint(string symbol, Action<AggregateTradeMessage> messageHandler);
 
         /// <summary>
         /// Listen to the User Data endpoint.
@@ -239,7 +239,7 @@ namespace Binance.API.Csharp.Client.Domain.Interfaces
         /// <param name="tradesHandler">Handler to be used when a trade message is received.</param>
         /// <param name="ordersHandler">Handler to be used when a order message is received.</param>
         /// <returns></returns>
-        string ListenUserDataEndpoint(MessageHandler<AccountUpdatedMessage> accountInfoHandler, MessageHandler<OrderOrTradeUpdatedMessage> tradesHandler, MessageHandler<OrderOrTradeUpdatedMessage> ordersHandler);
+        string ListenUserDataEndpoint(Action<AccountUpdatedMessage> accountInfoHandler, Action<OrderOrTradeUpdatedMessage> tradesHandler, Action<OrderOrTradeUpdatedMessage> ordersHandler);
         #endregion
     }
 }

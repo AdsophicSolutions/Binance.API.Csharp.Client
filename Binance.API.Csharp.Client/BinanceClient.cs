@@ -553,7 +553,7 @@ namespace Binance.API.Csharp.Client
         /// </summary>
         /// <param name="symbol">Ticker symbol.</param>
         /// <param name="depthHandler">Handler to be used when a message is received.</param>
-        public void ListenDepthEndpoint(string symbol, ApiClientAbstract.MessageHandler<DepthMessage> depthHandler)
+        public void ListenDepthEndpoint(string symbol, Action<DepthMessage> depthHandler)
         {
             if (string.IsNullOrWhiteSpace(symbol))
             {
@@ -570,7 +570,8 @@ namespace Binance.API.Csharp.Client
         /// <param name="symbol">Ticker symbol.</param>
         /// <param name="interval">Time interval to retreive.</param>
         /// <param name="klineHandler">Handler to be used when a message is received.</param>
-        public void ListenKlineEndpoint(string symbol, TimeInterval interval, ApiClientAbstract.MessageHandler<KlineMessage> klineHandler)
+        public void ListenKlineEndpoint(string symbol, TimeInterval interval, 
+            Action<KlineMessage> klineHandler)
         {
             if (string.IsNullOrWhiteSpace(symbol))
             {
@@ -586,7 +587,7 @@ namespace Binance.API.Csharp.Client
         /// </summary>
         /// <param name="symbol">Ticker symbol.</param>
         /// <param name="tradeHandler">Handler to be used when a message is received.</param>
-        public void ListenTradeEndpoint(string symbol, ApiClientAbstract.MessageHandler<AggregateTradeMessage> tradeHandler)
+        public void ListenTradeEndpoint(string symbol, Action<AggregateTradeMessage> tradeHandler)
         {
             if (string.IsNullOrWhiteSpace(symbol))
             {
@@ -604,7 +605,9 @@ namespace Binance.API.Csharp.Client
         /// <param name="tradesHandler">Handler to be used when a trade message is received.</param>
         /// <param name="ordersHandler">Handler to be used when a order message is received.</param>
         /// <returns></returns>
-        public string ListenUserDataEndpoint(ApiClientAbstract.MessageHandler<AccountUpdatedMessage> accountInfoHandler, ApiClientAbstract.MessageHandler<OrderOrTradeUpdatedMessage> tradesHandler, ApiClientAbstract.MessageHandler<OrderOrTradeUpdatedMessage> ordersHandler)
+        public string ListenUserDataEndpoint(Action<AccountUpdatedMessage> accountInfoHandler, 
+            Action<OrderOrTradeUpdatedMessage> tradesHandler, 
+            Action<OrderOrTradeUpdatedMessage> ordersHandler)
         {
             var listenKey = StartUserStream().Result.ListenKey;
 
