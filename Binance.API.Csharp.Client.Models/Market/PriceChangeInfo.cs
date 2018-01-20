@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using static Binance.API.Csharp.Client.Models.Utilities;
 
 namespace Binance.API.Csharp.Client.Models.Market
 {
@@ -30,8 +31,12 @@ namespace Binance.API.Csharp.Client.Models.Market
         public decimal Volume { get; set; }
         [JsonProperty("openTime")]
         public long OpenTime { get; set; }
+        public System.DateTime OpenTimeLocal { get => GetLocalTime(OpenTime); }
+        public System.DateTime OpenTimeUTC { get => GetUTCTime(OpenTime); }
         [JsonProperty("closeTime")]
         public long CloseTime { get; set; }
+        public System.DateTime CloseTimeLocal { get => GetLocalTime(CloseTime); }
+        public System.DateTime CloseTimeUTC { get => GetUTCTime(CloseTime); }
         [JsonProperty("firstId")]
         public int FirstId { get; set; }
         [JsonProperty("lastId")]

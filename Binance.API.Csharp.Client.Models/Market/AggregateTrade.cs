@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using static Binance.API.Csharp.Client.Models.Utilities;
 
 namespace Binance.API.Csharp.Client.Models.Market
 {
@@ -16,6 +17,8 @@ namespace Binance.API.Csharp.Client.Models.Market
         public int LastTradeId { get; set; }
         [JsonProperty("T")]
         public long TimeStamp { get; set; }
+        public System.DateTime TimeStampLocal { get => GetLocalTime(TimeStamp); }
+        public System.DateTime TimeStampUTC { get => GetUTCTime(TimeStamp); }
         [JsonProperty("m")]
         public bool BuyerIsMaker { get; set; }
         [JsonProperty("M")]
