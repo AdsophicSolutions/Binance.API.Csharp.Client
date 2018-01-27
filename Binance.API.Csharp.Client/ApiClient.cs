@@ -54,6 +54,35 @@ namespace Binance.API.Csharp.Client
         }
 
         /// <summary>
+        /// Calls API Methods.
+        /// </summary>
+        /// <typeparam name="T">Type to which the response content will be converted.</typeparam>
+        /// <param name="method">HTTPMethod (POST-GET-PUT-DELETE)</param>
+        /// <param name="endpoint">Url endpoing.</param>
+        /// <param name="isSigned">Specifies if the request needs a signature.</param>
+        /// <param name="parameters">Request parameters.</param>
+        /// <returns>returns raw JSON output as string</returns>
+        public async Task<string> CallAsyncRaw(ApiMethod method, string endpoint, bool isSigned = false, string parameters = null)
+        {
+            var finalEndpoint = endpoint + (string.IsNullOrWhiteSpace(parameters) ? "" : $"?{parameters}");
+
+            if (isSigned)
+            {
+                parameters += (!string.IsNullOrWhiteSpace(parameters) ? "&timestamp=" : "timestamp=") + Utilities.GenerateTimeStamp(DateTime.Now);
+                var signature = Utilities.GenerateSignature(APISecret, parameters);
+                finalEndpoint = $"{endpoint}?{parameters}&signature={signature}";
+            }
+
+            var request = new HttpRequestMessage(Utilities.CreateHttpMethod(method.ToString()), finalEndpoint);
+
+            var response = await ConnectionClient.SendAsync(request).ConfigureAwait(false);
+            response.EnsureSuccessStatusCode();
+
+            var result = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            return result; 
+        }
+
+        /// <summary>
         /// Connects to a Websocket endpoint.
         /// </summary>
         /// <typeparam name="T">Type used to parsed the response message.</typeparam>
@@ -150,5 +179,7 @@ namespace Binance.API.Csharp.Client
             ws.Connect();
             OpenSockets.Add(ws);
         }
+
+        
     }
 }

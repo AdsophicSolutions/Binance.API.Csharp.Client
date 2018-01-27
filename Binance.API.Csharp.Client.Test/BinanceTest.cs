@@ -24,7 +24,7 @@ namespace Binance.API.Csharp.Client.Test
         public void GetServerTime()
         {
             var serverTime = binanceClient.GetServerTime().Result;
-            WriteLine($"Server time is {serverTime.ServerTime}, Local Time:{serverTime.LocalTime}, UTC Time:{serverTime.UTCTime}");
+            WriteLine($"Server time is {serverTime.ServerTime}, Local Time:{serverTime.ServerTimeLocal}, UTC Time:{serverTime.ServerTimeUTC}");
         }
         #endregion
 
@@ -38,7 +38,8 @@ namespace Binance.API.Csharp.Client.Test
         [TestMethod]
         public void GetCandleSticks()
         {
-            var candlestick = binanceClient.GetCandleSticks("ethbtc", TimeInterval.Minutes_15, new System.DateTime(2017,11,24), new System.DateTime(2017, 11, 26)).Result;
+            //var candlestick = binanceClient.GetCandleSticks("ethbtc", TimeInterval.Minutes_15, new System.DateTime(2017,11,24), new System.DateTime(2017, 11, 26)).Result;
+            var candlestick = binanceClient.GetCandleSticks("ethbtc", TimeInterval.Months_1, System.DateTime.Now.AddMonths(-6), System.DateTime.Now).Result;
         }
 
         [TestMethod]
@@ -62,6 +63,12 @@ namespace Binance.API.Csharp.Client.Test
         public void GetAllPrices()
         {
             var tickerPrices = binanceClient.GetAllPrices().Result;
+        }
+
+        [TestMethod]
+        public void GetAllPricesRaw()
+        {
+            var jSONTickerPrices = binanceClient.GetAllPricesRaw().Result;
         }
 
         [TestMethod]
@@ -126,6 +133,12 @@ namespace Binance.API.Csharp.Client.Test
         public void GetAccountInfo()
         {
             var accountInfo = binanceClient.GetAccountInfo().Result;
+        }
+
+        [TestMethod]
+        public void GetAccountInfoRaw()
+        {
+            var jSONAccountInfo = binanceClient.GetAccountInfoRaw().Result;
         }
 
         [TestMethod]

@@ -210,6 +210,16 @@ namespace Binance.API.Csharp.Client
         }
 
         /// <summary>
+        /// Latest raw price for all symbols.
+        /// </summary>
+        /// <returns></returns>
+        public async Task<string> GetAllPricesRaw()
+        {
+            var result = await _apiClient.CallAsyncRaw(ApiMethod.GET, EndPoints.AllPrices, false);
+            return result;
+        }
+
+        /// <summary>
         /// Best price/qty on the order book for all symbols.
         /// </summary>
         /// <returns></returns>
@@ -390,7 +400,18 @@ namespace Binance.API.Csharp.Client
         public async Task<AccountInfo> GetAccountInfo(long recvWindow = 6000000)
         {
             var result = await _apiClient.CallAsync<AccountInfo>(ApiMethod.GET, EndPoints.AccountInformation, true, $"recvWindow={recvWindow}");
+            return result;
+        }
 
+
+        /// <summary>
+        /// Get current account information.
+        /// </summary>
+        /// <param name="recvWindow">Specific number of milliseconds the request is valid for.</param>
+        /// <returns>Returns Account Info JSON output</returns>
+        public async Task<string> GetAccountInfoRaw(long recvWindow = 6000000)
+        {
+            var result = await _apiClient.CallAsyncRaw(ApiMethod.GET, EndPoints.AccountInformation, true, $"recvWindow={recvWindow}");
             return result;
         }
 
@@ -614,8 +635,7 @@ namespace Binance.API.Csharp.Client
             _apiClient.ConnectToUserDataWebSocket(listenKey, accountInfoHandler, tradesHandler, ordersHandler);
 
             return listenKey;
-        }
-
+        }        
         #endregion
     }
 }

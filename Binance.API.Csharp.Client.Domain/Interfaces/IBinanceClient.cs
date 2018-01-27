@@ -67,6 +67,12 @@ namespace Binance.API.Csharp.Client.Domain.Interfaces
         Task<IEnumerable<SymbolPrice>> GetAllPrices();
 
         /// <summary>
+        /// Latest price for all symbols.
+        /// </summary>
+        /// <returns>returns raw JSON output</returns>
+        Task<string> GetAllPricesRaw();
+
+        /// <summary>
         /// Best price/qty on the order book for all symbols.
         /// </summary>
         /// <returns></returns>
@@ -144,6 +150,13 @@ namespace Binance.API.Csharp.Client.Domain.Interfaces
         /// <param name="recvWindow">Specific number of milliseconds the request is valid for.</param>
         /// <returns></returns>
         Task<AccountInfo> GetAccountInfo(long recvWindow = 6000000);
+
+        /// <summary>
+        /// Get current account information.
+        /// </summary>
+        /// <param name="recvWindow">Specific number of milliseconds the request is valid for.</param>
+        /// <returns>returns Raw JSON output</returns>
+        Task<string> GetAccountInfoRaw(long recvWindow = 6000000);
 
         /// <summary>
         /// Get trades for a specific account and symbol.
