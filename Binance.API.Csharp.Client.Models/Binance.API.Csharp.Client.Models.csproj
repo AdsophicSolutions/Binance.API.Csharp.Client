@@ -51,6 +51,8 @@
     <Compile Include="Account\Order.cs" />
     <Compile Include="Account\WithdrawHistory.cs" />
     <Compile Include="Account\WithdrawResponse.cs" />
+    <Compile Include="Cryptowatch\Currency.cs" />
+    <Compile Include="Cryptowatch\CurrencyDescriptions.cs" />
     <Compile Include="Enums\ApiMethods.cs" />
     <Compile Include="Enums\DepositStatus.cs" />
     <Compile Include="Enums\OrderSide.cs" />
@@ -83,5 +85,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -21,10 +21,23 @@ namespace Binance.API.Csharp.Client.Test
         }
 
         [TestMethod]
+        public void LoadTradingRules()
+        {
+            var tradingRules = binanceClient.GetTradingRules().Result; 
+        }
+
+        [TestMethod]
         public void GetServerTime()
         {
             var serverTime = binanceClient.GetServerTime().Result;
             WriteLine($"Server time is {serverTime.ServerTime}, Local Time:{serverTime.ServerTimeLocal}, UTC Time:{serverTime.ServerTimeUTC}");
+        }
+
+        [TestMethod]
+        public void GetCurrencyDescriptions()
+        {
+            CryptowatchClient client = new CryptowatchClient();
+            var currencyDescriptions = client.GetCurrencyDescriptions().Result;             
         }
         #endregion
 

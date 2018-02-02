@@ -2,6 +2,7 @@
 using Binance.API.Csharp.Client.Models.Enums;
 using Binance.API.Csharp.Client.Models.General;
 using Binance.API.Csharp.Client.Models.Market;
+using Binance.API.Csharp.Client.Models.Market.TradingRules;
 using Binance.API.Csharp.Client.Models.UserStream;
 using Binance.API.Csharp.Client.Models.WebSocket;
 using System;
@@ -24,7 +25,7 @@ namespace Binance.API.Csharp.Client.Domain.Interfaces
         /// Test connectivity to the Rest API and get the current server time.
         /// </summary>
         /// <returns></returns>
-        Task<ServerInfo> GetServerTime();
+        Task<ServerInfo> GetServerTime();        
         #endregion
 
         #region Market Data
@@ -71,6 +72,18 @@ namespace Binance.API.Csharp.Client.Domain.Interfaces
         /// </summary>
         /// <returns>returns raw JSON output</returns>
         Task<string> GetAllPricesRaw();
+
+        /// <summary>
+        /// Gets current exchange trading rules
+        /// </summary>
+        /// <returns></returns>
+        Task<TradingRules> GetTradingRules();
+
+        /// <summary>
+        /// Gets current exchange trading rules
+        /// </summary>
+        /// <returns>returns raw JSON output</returns>
+        Task<string> GetTradingRulesRaw();
 
         /// <summary>
         /// Best price/qty on the order book for all symbols.

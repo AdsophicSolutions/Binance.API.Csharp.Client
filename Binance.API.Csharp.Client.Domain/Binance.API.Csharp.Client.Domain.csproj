@@ -48,6 +48,7 @@
     <Compile Include="Abstract\BinanceClientAbstract.cs" />
     <Compile Include="Interfaces\IApiClient.cs" />
     <Compile Include="Interfaces\IBinanceClient.cs" />
+    <Compile Include="Interfaces\ICryptowatchClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

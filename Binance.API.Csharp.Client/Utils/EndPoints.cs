@@ -5,6 +5,7 @@
     /// </summary>
     public static class EndPoints
     {
+        #region EndPoints Binannce
         #region General Endpoints
         public static readonly string TestConnectivity = "/api/v1/ping";
         public static readonly string CheckServerTime = "/api/v1/time";
@@ -17,6 +18,7 @@
         public static readonly string TickerPriceChange24H = "/api/v1/ticker/24hr";
         public static readonly string AllPrices = "/api/v1/ticker/allPrices";
         public static readonly string OrderBookTicker = "/api/v1/ticker/allBookTickers";
+        public static readonly string ExchangeInfo = "/api/v1/exchangeInfo";
         public static readonly string TradingRules = "https://gist.githubusercontent.com/Ninj0r/3029b9d635f8f81f5ffab9cc9df5cc61/raw/810530a2118e5d8cdcfcc4d220349976a0acf131/tradingRules_20171022.json";
         #endregion
 
@@ -40,5 +42,11 @@
         public static readonly string KeepAliveUserStream = "/api/v1/userDataStream";
         public static readonly string CloseUserStream = "/api/v1/userDataStream";
         #endregion
+        #endregion EndPoints Binannce
+
+        #region Endpoints CryptoWatch
+        public static readonly string CurrencyDescriptions = "https://api.cryptowat.ch/assets";
+        #endregion Endpoints CryptoWatch
+
     }
 }

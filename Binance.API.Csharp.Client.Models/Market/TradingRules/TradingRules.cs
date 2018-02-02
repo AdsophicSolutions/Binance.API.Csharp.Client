@@ -13,6 +13,8 @@ namespace Binance.API.Csharp.Client.Models.Market.TradingRules
         public string Timezone { get; set; }
         [JsonProperty("serverTime")]
         public long ServerTime { get; set; }
+        public DateTime ServerTimeLocal { get => Utilities.GetLocalTime(ServerTime); }
+        public DateTime ServerTimeUTC { get => Utilities.GetUTCTime(ServerTime); }
         [JsonProperty("rateLimits")]
         public IEnumerable<RateLimit> RateLimits { get; set; }
         [JsonProperty("symbols")]

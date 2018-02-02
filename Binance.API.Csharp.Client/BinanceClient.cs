@@ -90,8 +90,9 @@ namespace Binance.API.Csharp.Client
 
         private void LoadTradingRules()
         {
-            var apiClient = new ApiClient("", "", EndPoints.TradingRules, addDefaultHeaders: false);
-            _tradingRules = apiClient.CallAsync<TradingRules>(ApiMethod.GET, "").Result;
+            _tradingRules = GetTradingRules().Result;
+            //var apiClient = new ApiClient("", "", EndPoints.TradingRules, addDefaultHeaders: false);
+            //_tradingRules = apiClient.CallAsync<TradingRules>(ApiMethod.GET, "").Result;
         }
         #endregion
 
@@ -216,6 +217,27 @@ namespace Binance.API.Csharp.Client
         public async Task<string> GetAllPricesRaw()
         {
             var result = await _apiClient.CallAsyncRaw(ApiMethod.GET, EndPoints.AllPrices, false);
+            return result;
+        }
+
+        /// <summary>
+        /// Gets latest exchange trading rules
+        /// </summary>
+        /// <returns></returns>
+        public async Task<TradingRules> GetTradingRules()
+        {
+            var result = await _apiClient.CallAsync<TradingRules>(ApiMethod.GET, EndPoints.ExchangeInfo, false);
+            return result; 
+        }
+
+
+        /// <summary>
+        /// Gets latest exchange trading rules as raw JSON
+        /// </summary>
+        /// <returns></returns>
+        public async Task<string> GetTradingRulesRaw()
+        {
+            var result = await _apiClient.CallAsyncRaw(ApiMethod.GET, EndPoints.ExchangeInfo, false);
             return result;
         }
 
@@ -635,7 +657,8 @@ namespace Binance.API.Csharp.Client
             _apiClient.ConnectToUserDataWebSocket(listenKey, accountInfoHandler, tradesHandler, ordersHandler);
 
             return listenKey;
-        }        
+        }
+
         #endregion
     }
 }
