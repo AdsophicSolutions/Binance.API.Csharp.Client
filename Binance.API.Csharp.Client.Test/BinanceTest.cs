@@ -64,7 +64,7 @@ namespace Binance.API.Csharp.Client.Test
         [TestMethod]
         public void GetPriceChange24H()
         {
-            var priceChangeInfos = binanceClient.GetPriceChange24H().Result;
+            var priceChangeInfos = binanceClient.GetPriceChange24HAll().Result;
             foreach(var priceChangeInfo in priceChangeInfos)
             {
                 WriteLine($"Symbol: {priceChangeInfo.Symbol}, Price Change Percent: {priceChangeInfo.PriceChange}, " +
@@ -88,6 +88,20 @@ namespace Binance.API.Csharp.Client.Test
         public void GetOrderBookTicker()
         {
             var orderBookTickers = binanceClient.GetOrderBookTicker().Result;
+        }
+        #endregion
+
+        #region 24 hour info 
+        [TestMethod]
+        public void Get24HourPriceChangeRaw()
+        {
+            var result = binanceClient.GetPriceChange24HRaw("").Result;
+        }
+
+        [TestMethod]
+        public void Get24HourPriceChange()
+        {
+            var result = binanceClient.GetPriceChange24HRaw("btcusdt").Result;
         }
         #endregion
 
@@ -198,7 +212,7 @@ namespace Binance.API.Csharp.Client.Test
             var resut = binanceClient.CloseUserStream("@ListenKey").Result;
         }
         #endregion
-
+        
         #region WebSocket
 
         #region Depth

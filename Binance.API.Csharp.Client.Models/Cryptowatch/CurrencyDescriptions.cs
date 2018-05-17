@@ -10,6 +10,6 @@ namespace Binance.API.Csharp.Client.Models.Cryptowatch
     public class CurrencyDescriptions
     {
         [JsonProperty("result")]
-        IEnumerable<Currency> Result { get; set; }
+        public IEnumerable<Currency> Result { get; set; }
     }
 }

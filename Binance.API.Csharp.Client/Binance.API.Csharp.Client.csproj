@@ -75,6 +75,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy $(ProjectDir)\$(OutDir)\Binance*.* $(SolutionDir)\..\common\lib</PostBuildEvent>
+    <PostBuildEvent>copy $(ProjectDir)\$(OutDir)\Binance*.* $(SolutionDir)\..\..\Adsophic.Binance.Trading\3rdParty\library\binance</PostBuildEvent>
   </PropertyGroup>
 </Project>

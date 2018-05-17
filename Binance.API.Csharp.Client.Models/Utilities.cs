@@ -14,5 +14,6 @@ namespace Binance.API.Csharp.Client.Models
 
         public static DateTime GetUTCTime(long timeOffset) =>
             (new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).AddMilliseconds(timeOffset);
+
     }
 }

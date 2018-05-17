@@ -59,7 +59,13 @@ namespace Binance.API.Csharp.Client.Domain.Interfaces
         /// </summary>
         /// <param name="symbol">Ticker symbol.</param>
         /// <returns></returns>
-        Task<IEnumerable<PriceChangeInfo>> GetPriceChange24H(string symbol);
+        Task<PriceChangeInfo> GetPriceChange24H(string symbol);
+
+        /// <summary>
+        /// 24 hour price change statistics for all symbols
+        /// </summary>
+        /// <returns></returns>
+        Task<IEnumerable<PriceChangeInfo>> GetPriceChange24HAll();
 
         /// <summary>
         /// Latest price for all symbols.

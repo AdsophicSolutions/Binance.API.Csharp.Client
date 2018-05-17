@@ -190,11 +190,36 @@ namespace Binance.API.Csharp.Client
         /// </summary>
         /// <param name="symbol">Ticker symbol.</param>
         /// <returns></returns>
-        public async Task<IEnumerable<PriceChangeInfo>> GetPriceChange24H(string symbol = "")
+        public async Task<PriceChangeInfo> GetPriceChange24H(string symbol)
+        {
+            var args = $"symbol={symbol.ToUpper()}";
+
+            var result = await _apiClient.CallAsync<PriceChangeInfo>(ApiMethod.GET, EndPoints.TickerPriceChange24H, false, args);
+
+            return result;
+        }
+
+        /// <summary>
+        /// 24 Price change statistics for all symbols. 
+        /// </summary>
+        /// <returns>IEnumerable set of PriceChangeInfo</returns>
+        public async Task<IEnumerable<PriceChangeInfo>> GetPriceChange24HAll()
+        {
+            var result = await _apiClient.CallAsync<IEnumerable< PriceChangeInfo>>(ApiMethod.GET, EndPoints.TickerPriceChange24H, false);
+
+            return result;
+        }
+
+        /// <summary>
+        /// 24 hour price change statistics.
+        /// </summary>
+        /// <param name="symbol">Ticker symbol.</param>
+        /// <returns></returns>
+        public async Task<string> GetPriceChange24HRaw(string symbol = "")
         {
             var args = string.IsNullOrWhiteSpace(symbol) ? "" : $"symbol={symbol.ToUpper()}";
 
-            var result = await _apiClient.CallAsync<IEnumerable< PriceChangeInfo>>(ApiMethod.GET, EndPoints.TickerPriceChange24H, false, args);
+            var result = await _apiClient.CallAsyncRaw(ApiMethod.GET, EndPoints.TickerPriceChange24H, false, args);
 
             return result;
         }
